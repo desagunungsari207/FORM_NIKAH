@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>FORM PENDAFTARAN NIKAH - Desa Gunungsari</title>
+<meta name="description" content="Aplikasi Form Pendaftaran Nikah Desa Gunungsari Kec. Sadananya Kab. Ciamis">
+<meta name="theme-color" content="#1a365d">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Nikah Gunungsari">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<style>
+:root {
+  --primary: #1a365d;
+  --primary-light: #2c5282;
+  --green: #276749;
+  --green-btn: #38a169;
+  --orange: #c05621;
+  --orange-btn: #dd6b20;
+  --gray: #f7fafc;
+  --border: #e2e8f0;
+  --text: #1a202c;
+  --muted: #718096;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #edf2f7;
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.45;
+}
+.app { max-width: 480px; margin: 0 auto; min-height: 100vh; background: #fff; box-shadow: 0 0 40px rgba(0,0,0,.08); position: relative; }
+@media (min-width: 768px) { .app { max-width: 720px; margin: 20px auto; border-radius: 16px; overflow: hidden; } }
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  padding: 18px 20px 16px;
+  text-align: center;
+  position: relative;
+}
+.header h1 { font-size: 1.25rem; font-weight: 700; letter-spacing: .3px; }
+.header p { font-size: .78rem; opacity: .9; margin-top: 4px; }
+.header .logout-btn {
+  position: absolute; top: 12px; right: 14px;
+  background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.4);
+  color: #fff; font-size: .75rem; font-weight: 600; padding: 5px 10px;
+  border-radius: 6px; cursor: pointer;
+}
+.header .logout-btn:hover { background: rgba(255,255,255,.3); }
+
+/* Login page */
+.login-wrap {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 70vh; padding: 24px 20px;
+}
+.login-card {
+  width: 100%; max-width: 340px;
+  background: #fff; border-radius: 16px; padding: 28px 24px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.1); border: 1px solid var(--border);
+}
+.login-card h2 {
+  text-align: center; font-size: 1.2rem; color: var(--primary); margin-bottom: 6px;
+}
+.login-card .sub {
+  text-align: center; font-size: .8rem; color: var(--muted); margin-bottom: 22px;
+}
+.login-card .form-group { margin-bottom: 16px; }
+.login-card .btn {
+  width: 100%; padding: 14px; margin-top: 8px;
+  background: var(--primary); color: #fff; border: none; border-radius: 10px;
+  font-size: 1rem; font-weight: 600; cursor: pointer;
+}
+.login-card .btn:active { transform: scale(.98); }
+.login-error {
+  background: #fed7d7; color: #c53030; font-size: .85rem; font-weight: 600;
+  padding: 10px 12px; border-radius: 8px; margin-bottom: 14px; text-align: center;
+  display: none;
+}
+.login-error.show { display: block; }
+.login-hint {
+  text-align: center; font-size: .72rem; color: var(--muted); margin-top: 16px;
+}
+
+/* Pages */
+.page { display: none; padding: 16px; padding-bottom: 40px; }
+.page.active { display: block; }
+
+/* Buttons main */
+.btn-main {
+  display: flex; align-items: center; gap: 12px;
+  width: 100%; padding: 16px 18px; margin-bottom: 12px;
+  border: none; border-radius: 12px; color: #fff;
+  font-size: 1.05rem; font-weight: 600; cursor: pointer;
+  text-align: left; transition: transform .15s, box-shadow .15s;
+  box-shadow: 0 4px 12px rgba(0,0,0,.12);
+}
+.btn-main:active { transform: scale(.98); }
+.btn-main .icon { font-size: 1.4rem; width: 32px; text-align: center; }
+.btn-main .arrow { margin-left: auto; opacity: .8; }
+.btn-green { background: linear-gradient(135deg, #276749, #38a169); }
+.btn-orange { background: linear-gradient(135deg, #c05621, #dd6b20); }
+
+/* Section */
+.section-title {
+  font-size: .85rem; font-weight: 700; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .5px;
+  margin: 20px 0 12px; padding-bottom: 6px;
+  border-bottom: 2px solid var(--border);
+}
+
+/* Grid form buttons */
+.form-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+}
+@media (max-width: 400px) { .form-grid { grid-template-columns: repeat(3, 1fr); } }
+.form-btn {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 6px; padding: 14px 6px; background: #fff;
+  border: 1.5px solid var(--border); border-radius: 12px;
+  cursor: pointer; font-size: .75rem; font-weight: 600; color: var(--primary);
+  transition: all .15s; min-height: 78px;
+}
+.form-btn:active, .form-btn:hover { border-color: var(--primary-light); background: #ebf8ff; }
+.form-btn .fi { font-size: 1.35rem; }
+
+/* Export Import */
+.ei-row { display: flex; gap: 10px; margin-top: 20px; }
+.ei-btn {
+  flex: 1; padding: 12px; border-radius: 10px; border: 1.5px solid var(--border);
+  background: #fff; font-weight: 600; font-size: .9rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.ei-btn.export { color: var(--green); border-color: #9ae6b4; }
+.ei-btn.import { color: var(--orange); border-color: #fbd38d; }
+
+/* Form input */
+.form-group { margin-bottom: 14px; }
+.form-group label {
+  display: block; font-size: .8rem; font-weight: 600; color: var(--muted); margin-bottom: 4px;
+}
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 10px 12px; border: 1.5px solid var(--border);
+  border-radius: 8px; font-size: .95rem; background: #fff;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none; border-color: var(--primary-light); box-shadow: 0 0 0 3px rgba(44,82,130,.15);
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.card {
+  background: var(--gray); border-radius: 12px; padding: 14px; margin-bottom: 16px;
+  border: 1px solid var(--border);
+}
+.card-title { font-weight: 700; font-size: .95rem; color: var(--primary); margin-bottom: 12px; }
+
+.btn-bar { display: flex; gap: 10px; margin-top: 20px; position: sticky; bottom: 0; background: #fff; padding: 12px 0; }
+.btn {
+  flex: 1; padding: 14px; border: none; border-radius: 10px;
+  font-size: 1rem; font-weight: 600; cursor: pointer;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-secondary { background: var(--border); color: var(--text); }
+.btn-success { background: var(--green-btn); color: #fff; }
+.btn-danger { background: #e53e3e; color: #fff; }
+
+/* Back */
+.back-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: none; color: var(--primary); font-weight: 600;
+  font-size: .95rem; cursor: pointer; margin-bottom: 14px; padding: 4px 0;
+}
+
+/* Rekap table */
+.rekap-item {
+  background: #fff; border: 1px solid var(--border); border-radius: 10px;
+  padding: 12px 14px; margin-bottom: 10px; cursor: pointer;
+}
+.rekap-item:hover { border-color: var(--primary-light); }
+.rekap-item .nama { font-weight: 700; font-size: .95rem; }
+.rekap-item .meta { font-size: .8rem; color: var(--muted); margin-top: 4px; }
+.rekap-item .status {
+  display: inline-block; font-size: .7rem; font-weight: 700; padding: 2px 8px;
+  border-radius: 20px; margin-top: 6px;
+}
+.status-proses { background: #fefcbf; color: #975a16; }
+.status-selesai { background: #c6f6d5; color: #276749; }
+
+.empty { text-align: center; padding: 40px 20px; color: var(--muted); }
+.search-box {
+  width: 100%; padding: 12px 14px; border: 1.5px solid var(--border);
+  border-radius: 10px; margin-bottom: 14px; font-size: .95rem;
+}
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  background: #276749; color: #fff; padding: 12px 24px; border-radius: 10px;
+  font-weight: 600; z-index: 9999; display: none; box-shadow: 0 8px 24px rgba(0,0,0,.2);
+}
+.toast.show { display: block; animation: fadeIn .3s; }
+@keyframes fadeIn { from { opacity: 0; transform: translateX(-50%) translateY(10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
+/* ========== PRINT STYLES (F4) ========== */
+@media print {
+  body * { visibility: hidden; }
+  .print-area, .print-area * { visibility: visible; }
+  .print-area {
+    position: absolute; left: 0; top: 0; width: 100%;
+    background: #fff; padding: 0; margin: 0;
+  }
+  .no-print { display: none !important; }
+  @page {
+    size: 215.9mm 330mm; /* F4 exact */
+    margin: 12mm 14mm;
+  }
+}
+
+.print-area { display: none; }
+.print-area.showing { display: block; }
+
+/* Form print layout - match original style */
+.f-sheet {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 11pt;
+  color: #000;
+  line-height: 1.35;
+  max-width: 180mm;
+  margin: 0 auto;
+}
+.f-sheet .kop {
+  text-align: center; font-weight: bold; margin-bottom: 4px;
+}
+.f-sheet .kop .small { font-size: 10pt; font-weight: normal; }
+.f-sheet .judul {
+  text-align: center; font-weight: bold; font-size: 13pt;
+  margin: 12px 0 6px; text-decoration: underline;
+}
+.f-sheet .nomor { text-align: center; margin-bottom: 12px; }
+.f-sheet table.form-t { width: 100%; border-collapse: collapse; }
+.f-sheet table.form-t td {
+  vertical-align: top; padding: 2px 4px;
+}
+.f-sheet .label { width: 42%; }
+.f-sheet .colon { width: 12px; }
+.f-sheet .val { font-weight: normal; }
+.f-sheet .ttd {
+  margin-top: 28px; width: 100%;
+}
+.f-sheet .ttd-box {
+  display: inline-block; width: 45%; text-align: center; vertical-align: top;
+}
+.f-sheet .ttd-space { height: 60px; }
+.f-sheet .section { font-weight: bold; margin: 10px 0 4px; }
+.f-sheet .indent { padding-left: 16px; }
+.f-sheet hr { border: none; border-top: 1px solid #000; margin: 8px 0; }
+
+.print-actions {
+  position: fixed; top: 12px; right: 12px; z-index: 100;
+  display: flex; gap: 8px;
+}
+.print-actions button {
+  padding: 10px 18px; border: none; border-radius: 8px;
+  font-weight: 600; cursor: pointer; font-size: .9rem;
+}
+</style>
+</head>
+<body>
+<div class="app no-print">
+
+  <!-- ========== LOGIN ========== -->
+  <div id="page-login" class="page active">
+    <div class="header">
+      <h1>FORM PENDAFTARAN NIKAH</h1>
+      <p>Desa Gunungsari Kec. Sadananya Kab. Ciamis</p>
+    </div>
+    <div class="login-wrap">
+      <div class="login-card">
+        <h2>🔒 Login</h2>
+        <p class="sub">Masukkan username &amp; password untuk mengakses aplikasi</p>
+        <div class="login-error" id="loginError">Username atau password salah!</div>
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="loginUser" placeholder="Username" autocomplete="username" autofocus>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPass" placeholder="Password" autocomplete="current-password">
+        </div>
+        <button class="btn" onclick="doLogin()">Masuk</button>
+        <p class="login-hint">Proteksi sederhana · Sesi berakhir saat browser ditutup</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== DASHBOARD ========== -->
+  <div id="page-dashboard" class="page">
+    <div class="header">
+      <h1>FORM PENDAFTARAN NIKAH</h1>
+      <p>Desa Gunungsari Kec. Sadananya Kab. Ciamis</p>
+      <button class="logout-btn" onclick="doLogout()" title="Keluar">🚪 Keluar</button>
+    </div>
+    <div style="padding:16px;">
+      <button class="btn-main btn-green" onclick="bukaInputBaru()">
+        <span class="icon">📋</span> Input Data Baru <span class="arrow">›</span>
+      </button>
+      <button class="btn-main btn-orange" onclick="showPage('rekap')">
+        <span class="icon">📁</span> Lihat Rekap / Arsip <span class="arrow">›</span>
+      </button>
+
+      <div class="section-title">Cetak Form</div>
+      <div class="form-grid">
+        <button class="form-btn" onclick="preparePrint('n1pria')"><span class="fi">👤</span>N1 Pria</button>
+        <button class="form-btn" onclick="preparePrint('n1wanita')"><span class="fi">👩</span>N1 Wanita</button>
+        <button class="form-btn" onclick="preparePrint('n2')"><span class="fi">📄</span>N2</button>
+        <button class="form-btn" onclick="preparePrint('n4')"><span class="fi">✍️</span>N4</button>
+        <button class="form-btn" onclick="preparePrint('wali')"><span class="fi">👥</span>Ket. Wali</button>
+        <button class="form-btn" onclick="preparePrint('n6')"><span class="fi">📑</span>N6</button>
+        <button class="form-btn" onclick="preparePrint('andon')"><span class="fi">🏠</span>Andon</button>
+        <button class="form-btn" onclick="preparePrint('jejaka')"><span class="fi">🤵</span>Jejaka</button>
+      </div>
+
+      <div class="ei-row">
+        <button class="ei-btn export" onclick="exportExcel()">⬆️ Export Excel</button>
+        <button class="ei-btn export" onclick="exportData()" style="font-size:.8rem;">JSON</button>
+        <button class="ei-btn import" onclick="document.getElementById('importFile').click()">⬇️ Import Data</button>
+        <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
+      </div>
+      <p style="text-align:center;font-size:.75rem;color:var(--muted);margin-top:16px;" id="dataCount">0 data tersimpan</p>
+    </div>
+  </div>
+
+  <!-- ========== INPUT ========== -->
+  <div id="page-input" class="page">
+    <button class="back-btn" onclick="showPage('dashboard')">‹ Kembali</button>
+    <h2 style="margin-bottom:16px;font-size:1.15rem;">Input Data Catin</h2>
+
+    <div class="card">
+      <div class="card-title">A. Rencana Nikah</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Tanggal Akad Nikah</label>
+          <input type="date" id="f_tgl_nikah" onchange="updateHariTgl()">
+        </div>
+        <div class="form-group">
+          <label>Jam</label>
+          <input type="time" id="f_jam_nikah" value="08:00" onchange="updateHariTgl()">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Hari / Tanggal / Jam <small style="font-weight:400;color:#718096;">(otomatis)</small></label>
+        <input type="text" id="f_hari_tgl" placeholder="Pilih tanggal &amp; jam di atas" readonly style="background:#f7fafc;color:#1a202c;font-weight:600;">
+      </div>
+      <div class="form-group">
+        <label>Tempat Akad Nikah</label>
+        <input type="text" id="f_tempat" placeholder="KUA KEC. SADANANYA" value="KUA KEC.SADANANYA">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Tgl Input Berkas</label>
+          <input type="date" id="f_tgl_input">
+        </div>
+        <div class="form-group">
+          <label>No. Register (angka saja)</label>
+          <input type="text" id="f_noreg" placeholder="Contoh: 44">
+          <small style="color:#718096;font-size:.75rem;">Akan tampil: 474.2/<b>44</b>/Ds.2026</small>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Status</label>
+          <select id="f_status">
+            <option value="PROSES">PROSES</option>
+            <option value="SELESAI">SELESAI</option>
+            <option value="BATAL">BATAL</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mas Kawin</label>
+          <input type="text" id="f_maskawin" placeholder="UANG 5 JUTA RUPIAH">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">B. Calon Suami</div>
+      <div class="form-group"><label>Nama Lengkap</label><input type="text" id="f_suami_nama"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Bin</label><input type="text" id="f_suami_bin"></div>
+        <div class="form-group"><label>NIK</label><input type="text" id="f_suami_nik" maxlength="16"></div>
+      </div>
+      <div class="form-group"><label>Tempat, Tanggal Lahir</label><input type="text" id="f_suami_ttl" placeholder="CIAMIS, 11-11-1980"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Agama</label><input type="text" id="f_suami_agama" value="ISLAM"></div>
+        <div class="form-group"><label>Pekerjaan</label><input type="text" id="f_suami_kerja"></div>
+      </div>
+      <div class="form-group"><label>Alamat</label><textarea id="f_suami_alamat" rows="2"></textarea></div>
+      <div class="form-group"><label>Status Perkawinan</label>
+        <select id="f_suami_status">
+          <option value="JEJAKA">JEJAKA</option>
+          <option value="DUDA (CERAI TERCATAT)">DUDA (CERAI TERCATAT)</option>
+          <option value="DUDA (CERAI MATI)">DUDA (CERAI MATI)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">C. Calon Istri</div>
+      <div class="form-group"><label>Nama Lengkap</label><input type="text" id="f_istri_nama"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Binti</label><input type="text" id="f_istri_binti"></div>
+        <div class="form-group"><label>NIK</label><input type="text" id="f_istri_nik" maxlength="16"></div>
+      </div>
+      <div class="form-group"><label>Tempat, Tanggal Lahir</label><input type="text" id="f_istri_ttl" placeholder="CIAMIS, 08-08-1982"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Agama</label><input type="text" id="f_istri_agama" value="ISLAM"></div>
+        <div class="form-group"><label>Pekerjaan</label><input type="text" id="f_istri_kerja" placeholder="-"></div>
+      </div>
+      <div class="form-group"><label>Alamat</label><textarea id="f_istri_alamat" rows="2"></textarea></div>
+      <div class="form-group"><label>Status Perkawinan</label>
+        <select id="f_istri_status">
+          <option value="PERAWAN">PERAWAN</option>
+          <option value="JANDA (CERAI TERCATAT)">JANDA (CERAI TERCATAT)</option>
+          <option value="JANDA (CERAI MATI)">JANDA (CERAI MATI)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Orang Tua Istri (Wali)</div>
+      <div class="form-group"><label>Nama Ayah</label><input type="text" id="f_ayah_nama"></div>
+      <div class="form-row">
+        <div class="form-group"><label>NIK Ayah</label><input type="text" id="f_ayah_nik"></div>
+        <div class="form-group"><label>TTL Ayah</label><input type="text" id="f_ayah_ttl"></div>
+      </div>
+      <div class="form-group"><label>Pekerjaan Ayah</label><input type="text" id="f_ayah_kerja"></div>
+      <div class="form-group"><label>Alamat Ayah</label><input type="text" id="f_ayah_alamat"></div>
+      <div class="form-group"><label>Nama Ibu</label><input type="text" id="f_ibu_nama"></div>
+      <div class="form-row">
+        <div class="form-group"><label>NIK Ibu</label><input type="text" id="f_ibu_nik"></div>
+        <div class="form-group"><label>TTL Ibu</label><input type="text" id="f_ibu_ttl"></div>
+      </div>
+      <div class="form-group">
+        <label>Status Ayah (Wali)</label>
+        <select id="f_ayah_status" onchange="toggleWaliPengganti()">
+          <option value="HIDUP">Masih Hidup</option>
+          <option value="ALMARHUM">Almarhum / Meninggal</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card" id="card-wali-pengganti" style="display:none;border-color:#c05621;">
+      <div class="card-title" style="color:#c05621;">Wali Pengganti (karena Ayah Almarhum)</div>
+      <div class="form-group"><label>Nama Wali Pengganti</label><input type="text" id="f_wali_nama"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Bin / Hubungan</label><input type="text" id="f_wali_bin" placeholder="Contoh: Paman / Kakak"></div>
+        <div class="form-group"><label>NIK</label><input type="text" id="f_wali_nik"></div>
+      </div>
+      <div class="form-group"><label>Tempat, Tanggal Lahir</label><input type="text" id="f_wali_ttl"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Agama</label><input type="text" id="f_wali_agama" value="ISLAM"></div>
+        <div class="form-group"><label>Pekerjaan</label><input type="text" id="f_wali_kerja"></div>
+      </div>
+      <div class="form-group"><label>Alamat</label><input type="text" id="f_wali_alamat"></div>
+      <div class="form-group"><label>Hubungan dengan Calon Istri</label>
+        <select id="f_wali_hubungan">
+          <option value="Kakek">Kakek</option>
+          <option value="Saudara laki-laki kandung">Saudara laki-laki kandung</option>
+          <option value="Saudara laki-laki seayah">Saudara laki-laki seayah</option>
+          <option value="Paman">Paman</option>
+          <option value="Wali Hakim">Wali Hakim</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Saksi</div>
+      <div class="form-row">
+        <div class="form-group"><label>Saksi 1 - Nama</label><input type="text" id="f_saksi1_nama"></div>
+        <div class="form-group"><label>Umur</label><input type="text" id="f_saksi1_umur" placeholder="54 TAHUN"></div>
+      </div>
+      <div class="form-group"><label>Pekerjaan & Alamat Saksi 1</label><input type="text" id="f_saksi1_ket"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Saksi 2 - Nama</label><input type="text" id="f_saksi2_nama"></div>
+        <div class="form-group"><label>Umur</label><input type="text" id="f_saksi2_umur" placeholder="48 TAHUN"></div>
+      </div>
+      <div class="form-group"><label>Pekerjaan & Alamat Saksi 2</label><input type="text" id="f_saksi2_ket"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Orang Tua Calon Suami</div>
+      <div class="form-group"><label>Nama Ayah</label><input type="text" id="f_ayah_suami"></div>
+      <div class="form-row">
+        <div class="form-group"><label>NIK Ayah</label><input type="text" id="f_ayah_suami_nik"></div>
+        <div class="form-group"><label>TTL Ayah</label><input type="text" id="f_ayah_suami_ttl"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Pekerjaan Ayah</label><input type="text" id="f_ayah_suami_kerja"></div>
+        <div class="form-group"><label>Agama Ayah</label><input type="text" id="f_ayah_suami_agama" value="ISLAM"></div>
+      </div>
+      <div class="form-group"><label>Alamat Ayah</label><input type="text" id="f_ayah_suami_alamat"></div>
+      <div class="form-group"><label>Nama Ibu</label><input type="text" id="f_ibu_suami"></div>
+      <div class="form-row">
+        <div class="form-group"><label>NIK Ibu</label><input type="text" id="f_ibu_suami_nik"></div>
+        <div class="form-group"><label>TTL Ibu</label><input type="text" id="f_ibu_suami_ttl"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Pekerjaan Ibu</label><input type="text" id="f_ibu_suami_kerja"></div>
+        <div class="form-group"><label>Agama Ibu</label><input type="text" id="f_ibu_suami_agama" value="ISLAM"></div>
+      </div>
+      <div class="form-group"><label>Alamat Ibu</label><input type="text" id="f_ibu_suami_alamat"></div>
+    </div>
+
+    <div class="form-group">
+      <label>Keterangan</label>
+      <input type="text" id="f_keterangan" placeholder="Opsional">
+    </div>
+
+    <div class="btn-bar">
+      <button class="btn btn-secondary" onclick="showPage('dashboard')">Batal</button>
+      <button class="btn btn-success" onclick="simpanData()">💾 Simpan ke Rekap</button>
+    </div>
+  </div>
+
+  <!-- ========== REKAP ========== -->
+  <div id="page-rekap" class="page">
+    <button class="back-btn" onclick="showPage('dashboard')">‹ Kembali</button>
+    <h2 style="margin-bottom:12px;font-size:1.15rem;">Rekap / Arsip Pemohon</h2>
+    <input type="text" class="search-box" id="searchRekap" placeholder="Cari nama / NIK..." oninput="renderRekap()">
+    <div id="rekapList"></div>
+    <div class="btn-bar">
+      <button class="btn btn-secondary" onclick="exportExcel()">⬆️ Export Excel</button>
+      <button class="btn btn-primary" onclick="cetakRekap()">🖨️ Cetak Daftar</button>
+    </div>
+  </div>
+
+  <!-- ========== PILIH DATA UNTUK CETAK ========== -->
+  <div id="page-pilih" class="page">
+    <button class="back-btn" onclick="showPage('dashboard')">‹ Kembali</button>
+    <h2 style="margin-bottom:12px;font-size:1.15rem;" id="pilihTitle">Pilih Data untuk Cetak</h2>
+    <div id="pilihList"></div>
+  </div>
+
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- ========== PRINT AREAS ========== -->
+<div id="print-n1pria" class="print-area f-sheet"></div>
+<div id="print-n1wanita" class="print-area f-sheet"></div>
+<div id="print-n2" class="print-area f-sheet"></div>
+<div id="print-n4" class="print-area f-sheet"></div>
+<div id="print-wali" class="print-area f-sheet"></div>
+<div id="print-n6" class="print-area f-sheet"></div>
+<div id="print-andon" class="print-area f-sheet"></div>
+<div id="print-jejaka" class="print-area f-sheet"></div>
+<div id="print-rekap" class="print-area"></div>
+
+<script>
+const STORAGE_KEY = 'pendaftaran_nikah_gunungsari_v1';
+const AUTH_KEY = 'pn_auth_session';
+
+/* ========== KREDENSIAL LOGIN (ganti sesuai kebutuhan) ========== */
+const LOGIN_USER = 'admin';
+const LOGIN_PASS = 'desa123';
+/* ============================================================= */
+
+let currentPrintType = null;
+let editId = null;
+
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+
+function isAuthenticated() {
+  return sessionStorage.getItem(AUTH_KEY) === 'ok';
+}
+
+function requireAuth() {
+  if (!isAuthenticated()) {
+    showPage('login');
+    return false;
+  }
+  return true;
+}
+
+function doLogin() {
+  const user = (document.getElementById('loginUser').value || '').trim();
+  const pass = (document.getElementById('loginPass').value || '');
+  const err = document.getElementById('loginError');
+  if (user === LOGIN_USER && pass === LOGIN_PASS) {
+    sessionStorage.setItem(AUTH_KEY, 'ok');
+    err.classList.remove('show');
+    document.getElementById('loginUser').value = '';
+    document.getElementById('loginPass').value = '';
+    showPage('dashboard');
+    updateCount();
+    toast('✅ Login berhasil');
+  } else {
+    err.classList.add('show');
+    document.getElementById('loginPass').value = '';
+    document.getElementById('loginPass').focus();
+  }
+}
+
+function doLogout() {
+  if (!confirm('Yakin ingin keluar dari aplikasi?')) return;
+  sessionStorage.removeItem(AUTH_KEY);
+  showPage('login');
+  toast('Anda telah keluar');
+}
+
+function loadData() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+  catch { return []; }
+}
+function saveData(arr) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+  updateCount();
+}
+
+function updateCount() {
+  const n = loadData().length;
+  const el = document.getElementById('dataCount');
+  if (el) el.textContent = n + ' data tersimpan';
+}
+
+
+function toggleWaliPengganti() {
+  const st = document.getElementById('f_ayah_status');
+  const card = document.getElementById('card-wali-pengganti');
+  if (!st || !card) return;
+  card.style.display = (st.value === 'ALMARHUM') ? 'block' : 'none';
+}
+
+const HARI_INDO = ['MINGGU','SENIN','SELASA','RABU','KAMIS','JUMAT','SABTU'];
+const BULAN_INDO = ['JANUARI','FEBRUARI','MARET','APRIL','MEI','JUNI','JULI','AGUSTUS','SEPTEMBER','OKTOBER','NOVEMBER','DESEMBER'];
+
+function updateHariTgl() {
+  const tglEl = document.getElementById('f_tgl_nikah');
+  const jamEl = document.getElementById('f_jam_nikah');
+  const outEl = document.getElementById('f_hari_tgl');
+  if (!tglEl || !jamEl || !outEl) return;
+
+  const tgl = tglEl.value;
+  const jam = jamEl.value || '08:00';
+  if (!tgl) {
+    outEl.value = '';
+    return;
+  }
+  try {
+    const d = new Date(tgl + 'T12:00:00'); // hindari shift timezone
+    if (isNaN(d.getTime())) { outEl.value = ''; return; }
+    const hari = HARI_INDO[d.getDay()];
+    const tglAngka = d.getDate();
+    const bulan = BULAN_INDO[d.getMonth()];
+    const tahun = d.getFullYear();
+    // format jam: 08:00 → 08.00
+    const jamFmt = jam.replace(':', '.');
+    outEl.value = hari + ' / ' + tglAngka + ' ' + bulan + ' ' + tahun + ' / ' + jamFmt + ' WIB';
+  } catch (e) {
+    outEl.value = '';
+  }
+}
+
+/** Coba parse string hari_tgl lama ke date + time (untuk mode edit) */
+function parseHariTglToInputs(str) {
+  const tglEl = document.getElementById('f_tgl_nikah');
+  const jamEl = document.getElementById('f_jam_nikah');
+  if (!tglEl || !jamEl) return;
+  if (!str) {
+    tglEl.value = '';
+    jamEl.value = '08:00';
+    return;
+  }
+  // contoh: "RABU / 16 SEPTEMBER 2026 / 08.00 WIB" atau "RABU / 16 SEPTEMBER 2026 / 08:00 WIB"
+  try {
+    const parts = str.split('/').map(s => s.trim());
+    if (parts.length >= 2) {
+      const tglPart = parts[1]; // "16 SEPTEMBER 2026"
+      const m = tglPart.match(/(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})/i);
+      if (m) {
+        const day = parseInt(m[1], 10);
+        const blnName = m[2].toUpperCase();
+        const year = parseInt(m[3], 10);
+        const blnIdx = BULAN_INDO.indexOf(blnName);
+        if (blnIdx >= 0) {
+          const mm = String(blnIdx + 1).padStart(2, '0');
+          const dd = String(day).padStart(2, '0');
+          tglEl.value = year + '-' + mm + '-' + dd;
+        }
+      }
+    }
+    if (parts.length >= 3) {
+      const jamPart = parts[2].replace(/WIB/i, '').trim().replace('.', ':');
+      // ambil HH:MM
+      const jm = jamPart.match(/(\d{1,2})[:.](\d{2})/);
+      if (jm) {
+        jamEl.value = String(jm[1]).padStart(2, '0') + ':' + jm[2];
+      }
+    }
+  } catch (e) { /* biarkan */ }
+  updateHariTgl();
+}
+
+function showPage(name) {
+  // Halaman selain login wajib autentikasi
+  if (name !== 'login' && !isAuthenticated()) {
+    name = 'login';
+  }
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('.print-area').forEach(p => { p.classList.remove('showing'); p.innerHTML = ''; });
+  if (name === 'rekap') renderRekap();
+  if (name === 'login') {
+    setTimeout(() => {
+      const u = document.getElementById('loginUser');
+      if (u) u.focus();
+    }, 100);
+  }
+  window.scrollTo(0,0);
+}
+
+function bukaInputBaru() {
+  if (!requireAuth()) return;
+  editId = null;
+  // clear all form fields
+  document.querySelectorAll('#page-input input, #page-input select, #page-input textarea').forEach(el => {
+    if (el.tagName === 'SELECT') {
+      el.selectedIndex = 0;
+    } else if (el.type !== 'date' && el.type !== 'time') {
+      el.value = '';
+    } else {
+      el.value = '';
+    }
+  });
+  // defaults
+  document.getElementById('f_tempat').value = 'KUA KEC.SADANANYA';
+  document.getElementById('f_suami_agama').value = 'ISLAM';
+  document.getElementById('f_istri_agama').value = 'ISLAM';
+  const agA = document.getElementById('f_ayah_suami_agama'); if (agA) agA.value = 'ISLAM';
+  const agI = document.getElementById('f_ibu_suami_agama'); if (agI) agI.value = 'ISLAM';
+  document.getElementById('f_tgl_input').value = new Date().toISOString().slice(0,10);
+  document.getElementById('f_status').value = 'PROSES';
+  document.getElementById('f_tgl_nikah').value = '';
+  document.getElementById('f_jam_nikah').value = '08:00';
+  document.getElementById('f_hari_tgl').value = '';
+  showPage('input');
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function getFormValues() {
+  return {
+    id: editId || uid(),
+    hari_tgl: val('f_hari_tgl'),
+    tempat: val('f_tempat'),
+    tgl_input: val('f_tgl_input'),
+    noreg: val('f_noreg'),
+    status: val('f_status'),
+    maskawin: val('f_maskawin'),
+    suami_nama: val('f_suami_nama'),
+    suami_bin: val('f_suami_bin'),
+    suami_nik: val('f_suami_nik'),
+    suami_ttl: val('f_suami_ttl'),
+    suami_agama: val('f_suami_agama'),
+    suami_kerja: val('f_suami_kerja'),
+    suami_alamat: val('f_suami_alamat'),
+    suami_status: val('f_suami_status'),
+    istri_nama: val('f_istri_nama'),
+    istri_binti: val('f_istri_binti'),
+    istri_nik: val('f_istri_nik'),
+    istri_ttl: val('f_istri_ttl'),
+    istri_agama: val('f_istri_agama'),
+    istri_kerja: val('f_istri_kerja'),
+    istri_alamat: val('f_istri_alamat'),
+    istri_status: val('f_istri_status'),
+    ayah_nama: val('f_ayah_nama'),
+    ayah_nik: val('f_ayah_nik'),
+    ayah_ttl: val('f_ayah_ttl'),
+    ayah_kerja: val('f_ayah_kerja'),
+    ayah_alamat: val('f_ayah_alamat'),
+    ayah_status: val('f_ayah_status'),
+    ibu_nama: val('f_ibu_nama'),
+    ibu_nik: val('f_ibu_nik'),
+    ibu_ttl: val('f_ibu_ttl'),
+    wali_nama: val('f_wali_nama'),
+    wali_bin: val('f_wali_bin'),
+    wali_nik: val('f_wali_nik'),
+    wali_ttl: val('f_wali_ttl'),
+    wali_agama: val('f_wali_agama'),
+    wali_kerja: val('f_wali_kerja'),
+    wali_alamat: val('f_wali_alamat'),
+    wali_hubungan: val('f_wali_hubungan'),
+    saksi1_nama: val('f_saksi1_nama'),
+    saksi1_umur: val('f_saksi1_umur'),
+    saksi1_ket: val('f_saksi1_ket'),
+    saksi2_nama: val('f_saksi2_nama'),
+    saksi2_umur: val('f_saksi2_umur'),
+    saksi2_ket: val('f_saksi2_ket'),
+    ayah_suami: val('f_ayah_suami'),
+    ayah_suami_nik: val('f_ayah_suami_nik'),
+    ayah_suami_ttl: val('f_ayah_suami_ttl'),
+    ayah_suami_kerja: val('f_ayah_suami_kerja'),
+    ayah_suami_agama: val('f_ayah_suami_agama'),
+    ayah_suami_alamat: val('f_ayah_suami_alamat'),
+    ibu_suami: val('f_ibu_suami'),
+    ibu_suami_nik: val('f_ibu_suami_nik'),
+    ibu_suami_ttl: val('f_ibu_suami_ttl'),
+    ibu_suami_kerja: val('f_ibu_suami_kerja'),
+    ibu_suami_agama: val('f_ibu_suami_agama'),
+    ibu_suami_alamat: val('f_ibu_suami_alamat'),
+    keterangan: val('f_keterangan'),
+    created: new Date().toISOString()
+  };
+}
+function val(id) { return (document.getElementById(id).value || '').trim(); }
+
+function simpanData() {
+  if (!requireAuth()) return;
+  const d = getFormValues();
+  if (!d.suami_nama || !d.istri_nama) {
+    alert('Nama Calon Suami dan Calon Istri wajib diisi!');
+    return;
+  }
+  let arr = loadData();
+  const idx = arr.findIndex(x => x.id === d.id);
+  if (idx >= 0) {
+    arr[idx] = d;
+    toast('✅ Data berhasil diperbarui');
+  } else {
+    arr.unshift(d);
+    toast('✅ Data baru berhasil disimpan ke Rekap');
+  }
+  saveData(arr);
+  editId = null;
+  showPage('rekap');
+}
+
+function renderRekap() {
+  const q = (document.getElementById('searchRekap').value || '').toLowerCase();
+  let arr = loadData();
+  if (q) {
+    arr = arr.filter(d =>
+      (d.suami_nama + d.istri_nama + d.suami_nik + d.istri_nik).toLowerCase().includes(q)
+    );
+  }
+  const box = document.getElementById('rekapList');
+  if (!arr.length) {
+    box.innerHTML = '<div class="empty">Belum ada data.<br>Klik Input Data Baru untuk mulai.</div>';
+    return;
+  }
+  box.innerHTML = arr.map(d => `
+    <div class="rekap-item">
+      <div class="nama">${esc(d.suami_nama)} &amp; ${esc(d.istri_nama)}</div>
+      <div class="meta">${esc(d.hari_tgl || '-')} · Reg: ${esc(d.noreg || '-')}</div>
+      <div class="meta">NIK: ${esc(d.suami_nik || '-')}</div>
+      <span class="status status-${(d.status||'PROSES').toLowerCase()}">${esc(d.status||'PROSES')}</span>
+      <div style="margin-top:10px;display:flex;gap:8px;">
+        <button onclick="event.stopPropagation();bukaDetail('${d.id}')" style="flex:1;padding:8px;border:none;border-radius:8px;background:#2c5282;color:#fff;font-weight:600;cursor:pointer;">✏️ Edit</button>
+        <button onclick="event.stopPropagation();hapusData('${d.id}')" style="flex:1;padding:8px;border:none;border-radius:8px;background:#e53e3e;color:#fff;font-weight:600;cursor:pointer;">🗑️ Hapus</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+
+function hapusData(id) {
+  if (!requireAuth()) return;
+  const arr = loadData();
+  const d = arr.find(x => x.id === id);
+  if (!d) return;
+  if (!confirm('Hapus data: ' + d.suami_nama + ' & ' + d.istri_nama + ' ?')) return;
+  saveData(arr.filter(x => x.id !== id));
+  toast('Data dihapus');
+  renderRekap();
+}
+
+function bukaDetail(id) {
+  if (!requireAuth()) return;
+  // For simplicity: allow print from selection
+  currentPrintType = null;
+  const arr = loadData();
+  const d = arr.find(x => x.id === id);
+  if (!d) return;
+  if (!confirm(`Data: ${d.suami_nama} & ${d.istri_nama}\n\nTekan OK untuk EDIT data ini.`)) return;
+  // fill form for edit
+  editId = d.id;
+  Object.keys(d).forEach(k => {
+    const el = document.getElementById('f_' + k);
+    if (el) el.value = d[k] || '';
+  });
+  // map special
+  parseHariTglToInputs(d.hari_tgl);
+  setIf('f_tempat', d.tempat);
+  setIf('f_tgl_input', d.tgl_input);
+  setIf('f_noreg', d.noreg);
+  setIf('f_status', d.status);
+  setIf('f_maskawin', d.maskawin);
+  setIf('f_suami_nama', d.suami_nama);
+  setIf('f_suami_bin', d.suami_bin);
+  setIf('f_suami_nik', d.suami_nik);
+  setIf('f_suami_ttl', d.suami_ttl);
+  setIf('f_suami_agama', d.suami_agama);
+  setIf('f_suami_kerja', d.suami_kerja);
+  setIf('f_suami_alamat', d.suami_alamat);
+  setIf('f_suami_status', d.suami_status);
+  setIf('f_istri_nama', d.istri_nama);
+  setIf('f_istri_binti', d.istri_binti);
+  setIf('f_istri_nik', d.istri_nik);
+  setIf('f_istri_ttl', d.istri_ttl);
+  setIf('f_istri_agama', d.istri_agama);
+  setIf('f_istri_kerja', d.istri_kerja);
+  setIf('f_istri_alamat', d.istri_alamat);
+  setIf('f_istri_status', d.istri_status);
+  setIf('f_ayah_nama', d.ayah_nama);
+  setIf('f_ayah_nik', d.ayah_nik);
+  setIf('f_ayah_ttl', d.ayah_ttl);
+  setIf('f_ayah_kerja', d.ayah_kerja);
+  setIf('f_ayah_alamat', d.ayah_alamat);
+  setIf('f_ayah_status', d.ayah_status || 'HIDUP');
+  setIf('f_ibu_nama', d.ibu_nama);
+  setIf('f_ibu_nik', d.ibu_nik);
+  setIf('f_ibu_ttl', d.ibu_ttl);
+  setIf('f_wali_nama', d.wali_nama);
+  setIf('f_wali_bin', d.wali_bin);
+  setIf('f_wali_nik', d.wali_nik);
+  setIf('f_wali_ttl', d.wali_ttl);
+  setIf('f_wali_agama', d.wali_agama);
+  setIf('f_wali_kerja', d.wali_kerja);
+  setIf('f_wali_alamat', d.wali_alamat);
+  setIf('f_wali_hubungan', d.wali_hubungan);
+  toggleWaliPengganti();
+  setIf('f_saksi1_nama', d.saksi1_nama);
+  setIf('f_saksi1_umur', d.saksi1_umur);
+  setIf('f_saksi1_ket', d.saksi1_ket);
+  setIf('f_saksi2_nama', d.saksi2_nama);
+  setIf('f_saksi2_umur', d.saksi2_umur);
+  setIf('f_saksi2_ket', d.saksi2_ket);
+  setIf('f_ayah_suami', d.ayah_suami);
+  setIf('f_ayah_suami_nik', d.ayah_suami_nik);
+  setIf('f_ayah_suami_ttl', d.ayah_suami_ttl);
+  setIf('f_ayah_suami_kerja', d.ayah_suami_kerja);
+  setIf('f_ayah_suami_agama', d.ayah_suami_agama);
+  setIf('f_ayah_suami_alamat', d.ayah_suami_alamat);
+  setIf('f_ibu_suami', d.ibu_suami);
+  setIf('f_ibu_suami_nik', d.ibu_suami_nik);
+  setIf('f_ibu_suami_ttl', d.ibu_suami_ttl);
+  setIf('f_ibu_suami_kerja', d.ibu_suami_kerja);
+  setIf('f_ibu_suami_agama', d.ibu_suami_agama);
+  setIf('f_ibu_suami_alamat', d.ibu_suami_alamat);
+  setIf('f_keterangan', d.keterangan);
+  showPage('input');
+}
+function setIf(id, v) { const el = document.getElementById(id); if (el) el.value = v || ''; }
+
+
+function formatNoreg(num) {
+  if (!num) return '........................';
+  const n = String(num).trim();
+  // year from tgl_input or current
+  let th = new Date().getFullYear();
+  try {
+    const ti = document.getElementById('f_tgl_input');
+    // when printing we pass data object - handle both
+  } catch(e) {}
+  return '474.2/' + n + '/Ds.' + th;
+}
+function formatNoregFromData(d) {
+  if (!d || !d.noreg) return '........................';
+  const n = String(d.noreg).trim();
+  let th = new Date().getFullYear();
+  if (d.tgl_input) {
+    try { th = new Date(d.tgl_input + 'T00:00:00').getFullYear(); } catch(e) {}
+  }
+  return '474.2/' + n + '/Ds.' + th;
+}
+
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function preparePrint(type) {
+  if (!requireAuth()) return;
+  currentPrintType = type;
+  const arr = loadData();
+  if (!arr.length) {
+    alert('Belum ada data. Silakan Input Data Baru terlebih dahulu.');
+    return;
+  }
+  document.getElementById('pilihTitle').textContent = 'Pilih Data untuk Cetak — ' + typeLabel(type);
+  const box = document.getElementById('pilihList');
+  box.innerHTML = arr.map(d => `
+    <div class="rekap-item" onclick="doPrint('${type}','${d.id}')">
+      <div class="nama">${esc(d.suami_nama)} &amp; ${esc(d.istri_nama)}</div>
+      <div class="meta">${esc(d.hari_tgl || '-')}</div>
+    </div>
+  `).join('');
+  showPage('pilih');
+}
+function typeLabel(t) {
+  const m = {n1pria:'N1 Pria',n1wanita:'N1 Wanita',n2:'N2',n4:'N4',wali:'Ket. Wali',n6:'N6',andon:'Andon',jejaka:'Jejaka'};
+  return m[t] || t;
+}
+
+function formatTglIndo(iso) {
+  if (!iso) return '';
+  try {
+    const d = new Date(iso + 'T00:00:00');
+    const bln = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+    return d.getDate() + ' ' + bln[d.getMonth()] + ' ' + d.getFullYear();
+  } catch { return iso; }
+}
+
+function doPrint(type, id) {
+  if (!requireAuth()) return;
+  const arr = loadData();
+  const d = arr.find(x => x.id === id);
+  if (!d) return;
+  const html = buildFormHTML(type, d);
+  const area = document.getElementById('print-' + type);
+  // hide all
+  document.querySelectorAll('.print-area').forEach(p => { p.classList.remove('showing'); p.innerHTML=''; });
+  area.innerHTML = `
+    <div class="print-actions no-print">
+      <button style="background:#276749;color:#fff" onclick="window.print()">🖨️ Cetak (F4)</button>
+      <button style="background:#718096;color:#fff" onclick="closePrint()">Tutup</button>
+    </div>
+    ${html}
+  `;
+  area.classList.add('showing');
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  setTimeout(() => window.print(), 300);
+}
+
+function closePrint() {
+  document.querySelectorAll('.print-area').forEach(p => { p.classList.remove('showing'); p.innerHTML=''; });
+  showPage('dashboard');
+}
+
+function row(label, value) {
+  return `<tr><td class="label">${label}</td><td class="colon">:</td><td class="val">${esc(value)||'-'}</td></tr>`;
+}
+
+function buildFormHTML(type, d) {
+  const tglSurat = formatTglIndo(d.tgl_input) || formatTglIndo(new Date().toISOString().slice(0,10));
+  const desa = 'Gunungsari';
+
+  if (type === 'n1pria') {
+    return `
+    <table style="width:100%;border-collapse:collapse;margin-bottom:6px;font-size:10pt;">
+      <tr>
+        <td style="vertical-align:top;line-height:1.4;">
+          Lampiran V<br>
+          Keputusan Dirjen Bimas Islam No 473 Tahun 2020
+        </td>
+        <td style="vertical-align:top;text-align:right;font-size:11pt;">
+          <b>Model N 1</b>
+        </td>
+      </tr>
+    </table>
+    <div style="margin:10px 0 6px;line-height:1.5;">
+      <table style="border-collapse:collapse;font-size:11pt;">
+        <tr><td style="width:180px;">KANTOR DESA/KELURAHAN</td><td style="width:12px;">:</td><td>GUNUNGSARI</td></tr>
+        <tr><td>KECAMATAN</td><td>:</td><td>SADANANYA</td></tr>
+        <tr><td>KABUPATEN/KOTA</td><td>:</td><td>CIAMIS</td></tr>
+      </table>
+    </div>
+    <div class="judul">PENGANTAR NIKAH</div>
+    <div class="nomor">Nomor : ${formatNoregFromData(d)}</div>
+    <div style="margin-bottom:8px;">Yang bertanda tangan di bawah ini menjelaskan dengan sesungguhnya bahwa :</div>
+    <table class="form-t">
+      ${row('1. Nama', d.suami_nama)}
+      ${row('2. Nomor Induk Kependudukan (NIK)', d.suami_nik)}
+      ${row('3. Jenis Kelamin', 'LAKI-LAKI')}
+      ${row('4. Tempat dan Tanggal Lahir', d.suami_ttl)}
+      ${row('5. Kewarganegaraan', 'WNI')}
+      ${row('6. Agama', d.suami_agama||'ISLAM')}
+      ${row('7. Pekerjaan', d.suami_kerja)}
+      ${row('8. Alamat', d.suami_alamat)}
+      ${row('9. Status Perkawinan', d.suami_status)}
+    </table>
+    <div style="margin:10px 0 6px;">Adalah benar anak dari perkawinan seorang pria :</div>
+    <table class="form-t">
+      ${row('1. Nama', d.ayah_suami||'-')}
+      ${row('2. Nomor Induk Kependudukan (NIK)', d.ayah_suami_nik||'-')}
+      ${row('3. Tempat dan Tanggal Lahir', d.ayah_suami_ttl||'-')}
+      ${row('4. Kewarganegaraan', 'WNI')}
+      ${row('5. Agama', d.ayah_suami_agama||'ISLAM')}
+      ${row('6. Pekerjaan', d.ayah_suami_kerja||'-')}
+      ${row('7. Alamat', d.ayah_suami_alamat||d.suami_alamat||'-')}
+    </table>
+    <div style="margin:8px 0 6px;">dengan seorang wanita :</div>
+    <table class="form-t">
+      ${row('1. Nama', d.ibu_suami||'-')}
+      ${row('2. Nomor Induk Kependudukan (NIK)', d.ibu_suami_nik||'-')}
+      ${row('3. Tempat dan Tanggal Lahir', d.ibu_suami_ttl||'-')}
+      ${row('4. Kewarganegaraan', 'WNI')}
+      ${row('5. Agama', d.ibu_suami_agama||'ISLAM')}
+      ${row('6. Pekerjaan', d.ibu_suami_kerja||'-')}
+      ${row('7. Alamat', d.ibu_suami_alamat||d.suami_alamat||'-')}
+    </table>
+    <div style="margin-top:12px;">Demikian surat pengantar ini dibuat dengan mengingat sumpah jabatan dan untuk dipergunakan sebagaimana semestinya.</div>
+    <div class="ttd">
+      <div class="ttd-box" style="float:right;">
+        <div>${desa}, ${tglSurat}</div>
+        <div>Kepala Desa/Lurah</div>
+        <div class="ttd-space"></div>
+        <div><strong>EMAN S</strong></div>
+      </div>
+      <div style="clear:both;"></div>
+    </div>`;
+  }
+
+  if (type === 'n1wanita') {
+    return `
+    <table style="width:100%;border-collapse:collapse;margin-bottom:6px;font-size:10pt;">
+      <tr>
+        <td style="vertical-align:top;line-height:1.4;">
+          Lampiran V<br>
+          Keputusan Dirjen Bimas Islam No 473 Tahun 2020
+        </td>
+        <td style="vertical-align:top;text-align:right;font-size:11pt;">
+          <b>Model N 1</b>
+        </td>
+      </tr>
+    </table>
+    <div style="margin:10px 0 6px;line-height:1.5;">
+      <table style="border-collapse:collapse;font-size:11pt;">
+        <tr><td style="width:180px;">KANTOR DESA/KELURAHAN</td><td style="width:12px;">:</td><td>GUNUNGSARI</td></tr>
+        <tr><td>KECAMATAN</td><td>:</td><td>SADANANYA</td></tr>
+        <tr><td>KABUPATEN/KOTA</td><td>:</td><td>CIAMIS</td></tr>
+      </table>
+    </div>
+    <div class="judul">PENGANTAR NIKAH</div>
+    <div class="nomor">Nomor : ${formatNoregFromData(d)}</div>
+    <div style="margin-bottom:8px;">Yang bertanda tangan di bawah ini menjelaskan dengan sesungguhnya bahwa :</div>
+    <table class="form-t">
+      ${row('1. Nama', d.istri_nama)}
+      ${row('2. Nomor Induk Kependudukan (NIK)', d.istri_nik)}
+      ${row('3. Jenis Kelamin', 'PEREMPUAN')}
+      ${row('4. Tempat dan Tanggal Lahir', d.istri_ttl)}
+      ${row('5. Kewarganegaraan', 'WNI')}
+      ${row('6. Agama', d.istri_agama||'ISLAM')}
+      ${row('7. Pekerjaan', d.istri_kerja||'-')}
+      ${row('8. Alamat', d.istri_alamat)}
+      ${row('9. Status Perkawinan', d.istri_status)}
+    </table>
+    <div style="margin:10px 0 6px;">Adalah benar anak dari perkawinan seorang pria :</div>
+    <table class="form-t">
+      ${row('1. Nama', d.ayah_nama)}
+      ${row('2. NIK', d.ayah_nik)}
+      ${row('3. Tempat dan Tanggal Lahir', d.ayah_ttl)}
+      ${row('4. Kewarganegaraan', 'WNI')}
+      ${row('5. Agama', 'ISLAM')}
+      ${row('6. Pekerjaan', d.ayah_kerja)}
+      ${row('7. Alamat', d.ayah_alamat||d.istri_alamat)}
+    </table>
+    <div style="margin:8px 0 6px;">dengan seorang wanita :</div>
+    <table class="form-t">
+      ${row('1. Nama', d.ibu_nama)}
+      ${row('2. NIK', d.ibu_nik)}
+      ${row('3. Tempat dan Tanggal Lahir', d.ibu_ttl)}
+      ${row('4. Kewarganegaraan', 'WNI')}
+      ${row('5. Agama', 'ISLAM')}
+      ${row('6. Pekerjaan', 'MENGURUS RUMAH TANGGA')}
+      ${row('7. Alamat', d.ayah_alamat||d.istri_alamat)}
+    </table>
+    <div style="margin-top:12px;">Demikian surat pengantar ini dibuat dengan mengingat sumpah jabatan dan untuk dipergunakan sebagaimana semestinya.</div>
+    <div class="ttd">
+      <div class="ttd-box" style="float:right;">
+        <div>${desa}, ${tglSurat}</div>
+        <div>Kepala Desa/Lurah</div>
+        <div class="ttd-space"></div>
+        <div><strong>EMAN S</strong></div>
+      </div>
+      <div style="clear:both;"></div>
+    </div>`;
+  }
+
+  if (type === 'n2') {
+    return `
+    <table style="width:100%;border-collapse:collapse;margin-bottom:8px;font-size:10pt;">
+      <tr>
+        <td style="vertical-align:top;line-height:1.4;">
+          Lampiran VI<br>
+          Keputusan Dirjen Bimas Islam No 473 Tahun 2020
+        </td>
+        <td style="vertical-align:top;text-align:right;font-size:11pt;">
+          <b>Model N 2</b><br>
+          ............
+        </td>
+      </tr>
+    </table>
+    <div class="judul" style="margin-top:14px;">PERMOHONAN KEHENDAK NIKAH</div>
+    <div style="margin:12px 0;">Perihal : Permohonan Kehendak Nikah</div>
+    <div>Kepada Yth.<br>Kepala KUA Kecamatan/PPN LN<br>di Tempat</div>
+    <div style="margin:12px 0;">Dengan hormat, kami mengajukan permohonan kehendak nikah untuk atas nama :</div>
+    <table class="form-t">
+      ${row('Calon suami', d.suami_nama)}
+      ${row('Calon istri', d.istri_nama)}
+      ${row('Hari / Tanggal / Jam', d.hari_tgl)}
+      ${row('Tempat akad nikah', d.tempat)}
+      ${row('Mas Kawin', d.maskawin||'-')}
+    </table>
+    <div style="margin:12px 0 6px;">Bersama ini kami sampaikan surat-surat yang diperlukan untuk diperiksa sebagai berikut :</div>
+    <div>1. Surat Pengantar nikah dari Desa/Kelurahan (N1)</div>
+    <div>2. Persetujuan Calon Mempelai (N4)</div>
+    <div>3. Fotokopi KTP Calon mempelai, Wali dan Saksi</div>
+    <div>4. Fotokopi Akta Kelahiran dan atau Ijazah</div>
+    <div>5. Fotokopi Kartu Keluarga</div>
+    <div>6. Pasfoto 2x3 = 4 lembar</div>
+    <div style="margin-top:16px;">Demikian permohonan ini kami sampaikan, kiranya dapat diperiksa, dihadiri, dan dicatat sesuai dengan ketentuan perundang-undangan.</div>
+    <div class="ttd">
+      <div class="ttd-box">
+        <div>Diterima tanggal ................</div>
+        <div>Yang menerima,</div>
+        <div>Kepala KUA / PPNLN</div>
+        <div class="ttd-space"></div>
+        <div>........................</div>
+      </div>
+      <div class="ttd-box" style="float:right;">
+        <div>Wassalam,</div>
+        <div>Pemohon</div>
+        <div class="ttd-space"></div>
+        <div><strong>${esc(d.suami_nama)}</strong></div>
+      </div>
+      <div style="clear:both;"></div>
+    </div>`;
+  }
+
+  if (type === 'n4') {
+    return `
+    <table style="width:100%;border-collapse:collapse;margin-bottom:8px;font-size:10pt;">
+      <tr>
+        <td style="vertical-align:top;line-height:1.4;">
+          Lampiran VIII<br>
+          Keputusan Dirjen Bimas Islam No 473 Tahun 2020
+        </td>
+        <td style="vertical-align:top;text-align:right;font-size:11pt;">
+          <b>Model N 4</b>
+        </td>
+      </tr>
+    </table>
+    <div class="judul" style="margin-top:14px;">PERSETUJUAN CALON PENGANTIN</div>
+    <div style="margin:12px 0;">Yang bertanda tangan di bawah ini :</div>
+    <div class="section">A. Calon Suami :</div>
+    <table class="form-t">
+      ${row('1. Nama lengkap dan alias', d.suami_nama)}
+      ${row('2. Bin', d.suami_bin)}
+      ${row('3. NIK', d.suami_nik)}
+      ${row('4. Tempat dan tanggal lahir', d.suami_ttl)}
+      ${row('5. Kewarganegaraan', 'WNI')}
+      ${row('6. Agama', d.suami_agama||'ISLAM')}
+      ${row('7. Pekerjaan', d.suami_kerja)}
+      ${row('8. Alamat', d.suami_alamat)}
+    </table>
+    <div class="section">B. Calon Isteri :</div>
+    <table class="form-t">
+      ${row('1. Nama lengkap dan alias', d.istri_nama)}
+      ${row('2. Binti', d.istri_binti)}
+      ${row('3. NIK', d.istri_nik)}
+      ${row('4. Tempat dan tanggal lahir', d.istri_ttl)}
+      ${row('5. Kewarganegaraan', 'WNI')}
+      ${row('6. Agama', d.istri_agama||'ISLAM')}
+      ${row('7. Pekerjaan', d.istri_kerja||'-')}
+      ${row('8. Alamat', d.istri_alamat)}
+    </table>
+    <div style="margin:14px 0;">Menyatakan dengan sesungguhnya bahwa atas dasar suka rela, dengan kesadaran sendiri tanpa paksaan dari siapapun juga, setuju untuk melangsungkan pernikahan.</div>
+    <div>Demikianlah surat persetujuan ini dibuat untuk digunakan seperlunya.</div>
+    <div class="ttd">
+      <div class="ttd-box">
+        <div>Calon Suami,</div>
+        <div class="ttd-space"></div>
+        <div><strong>${esc(d.suami_nama)}</strong></div>
+      </div>
+      <div class="ttd-box" style="float:right;">
+        <div>Calon Isteri,</div>
+        <div class="ttd-space"></div>
+        <div><strong>${esc(d.istri_nama)}</strong></div>
+      </div>
+      <div style="clear:both;"></div>
+    </div>`;
+  }
+
+  if (type === 'wali') {
+    return `
+    <div class="judul">SURAT KETERANGAN WALI</div>
+    <div style="margin:10px 0;">Yang bertanda tangan di bawah ini :</div>
+    <table class="form-t">
+      ${row('1. Nama', d.saksi1_nama)}
+      ${row('Umur', d.saksi1_umur)}
+      ${row('Pekerjaan / Alamat', d.saksi1_ket)}
+    </table>
+    <table class="form-t" style="margin-top:8px;">
+      ${row('2. Nama', d.saksi2_nama)}
+      ${row('Umur', d.saksi2_umur)}
+      ${row('Pekerjaan / Alamat', d.saksi2_ket)}
+    </table>
+    <div style="margin:12px 0 6px;">Menerangkan bahwa :</div>
+    <table class="form-t">
+      ${row('1. Nama', (d.ayah_status==='ALMARHUM' && d.wali_nama) ? d.wali_nama : d.ayah_nama)}
+      ${row('2. NIK', (d.ayah_status==='ALMARHUM' && d.wali_nik) ? d.wali_nik : d.ayah_nik)}
+      ${row('3. Tempat/tgl.lahir', (d.ayah_status==='ALMARHUM' && d.wali_ttl) ? d.wali_ttl : d.ayah_ttl)}
+      ${row('4. Agama', (d.ayah_status==='ALMARHUM' && d.wali_agama) ? d.wali_agama : 'ISLAM')}
+      ${row('5. Pekerjaan', (d.ayah_status==='ALMARHUM' && d.wali_kerja) ? d.wali_kerja : d.ayah_kerja)}
+      ${row('6. Alamat', (d.ayah_status==='ALMARHUM' && d.wali_alamat) ? d.wali_alamat : (d.ayah_alamat||d.istri_alamat))}
+      ${d.ayah_status==='ALMARHUM' ? row('7. Hubungan / Keterangan', (d.wali_hubungan||'') + ' (Ayah kandung Almarhum: ' + (d.ayah_nama||'-') + ')') : ''}
+    </table>
+    <div style="margin:10px 0 6px;">Adalah betul hak walinya perempuan :</div>
+    <table class="form-t">
+      ${row('1. Nama', d.istri_nama)}
+      ${row('2. Binti', d.istri_binti)}
+      ${row('3. Tempat/tgl.lahir', d.istri_ttl)}
+      ${row('4. Agama', d.istri_agama||'ISLAM')}
+      ${row('5. Pekerjaan', d.istri_kerja||'-')}
+      ${row('6. Alamat', d.istri_alamat)}
+    </table>
+    <div style="margin:10px 0;">sebagai wali, yang akan melangsungkan nikah dengan seorang laki-laki :</div>
+    <table class="form-t">
+      ${row('1. Nama', d.suami_nama)}
+      ${row('2. Bin', d.suami_bin)}
+      ${row('3. Tempat/tgl.lahir', d.suami_ttl)}
+      ${row('4. Agama', d.suami_agama||'ISLAM')}
+      ${row('5. Pekerjaan', d.suami_kerja)}
+      ${row('6. Alamat', d.suami_alamat)}
+    </table>
+    <div style="margin-top:12px;">Demikian surat keterangan ini dibuat untuk dapat digunakan sebagaimana mestinya.</div>
+    <div class="ttd">
+      <div class="ttd-box">
+        <div>Tanda Tangan Wali</div>
+        <div class="ttd-space"></div>
+        <div><strong>${esc((d.ayah_status==='ALMARHUM' && d.wali_nama) ? d.wali_nama : d.ayah_nama)}</strong></div>
+      </div>
+      <div class="ttd-box" style="float:right;">
+        <div>${desa}, ${tglSurat}</div>
+        <div>Kepala Desa Gunungsari</div>
+        <div class="ttd-space"></div>
+        <div><strong>EMAN S</strong></div>
+      </div>
+      <div style="clear:both;"></div>
+    </div>`;
+  }
+
+  if (type === 'n6') {
+    return `
+    <div class="kop">
+      <div>Desa : GUNUNGSARI</div>
+      <div>Kecamatan : SADANANYA</div>
+      <div>Kabupaten/Kota : CIAMIS</div>
+    </div>
+    <div class="judul">SURAT KETERANGAN STATUS</div>
+    <div class="nomor">Nomor : ........................</div>
+    <div style="margin:10px 0;">Yang bertanda tangan di bawah ini menjelaskan dengan sesungguhnya bahwa:</div>
+    <table class="form-t">
+      ${row('1. Nama lengkap', d.istri_nama)}
+      ${row('2. Binti', d.istri_binti)}
+      ${row('3. NIK', d.istri_nik)}
+      ${row('4. Tempat dan tanggal lahir', d.istri_ttl)}
+      ${row('5. Kewarganegaraan', 'WNI')}
+      ${row('6. Agama', d.istri_agama||'ISLAM')}
+      ${row('7. Pekerjaan', d.istri_kerja||'-')}
+      ${row('8. Alamat', d.istri_alamat)}
+      ${row('Status Perkawinan', d.istri_status)}
+    </table>
+    <div style="margin-top:14px;">Demikian surat keterangan ini dibuat dengan mengingat sumpah jabatan dan untuk digunakan seperlunya.</div>
+    <div class="ttd">
+      <div class="ttd-box" style="float:right;">
+        <div>${desa}, ${tglSurat}</div>
+        <div>Kepala Desa Gunungsari</div>
+        <div class="ttd-space"></div>
+        <div><strong>EMAN S</strong></div>
+      </div>
+      <div style="clear:both;"></div>
+    </div>`;
+  }
+
+  if (type === 'andon') {
+    return `
+    <table style="width:100%;border-collapse:collapse;margin-bottom:4px;">
+      <tr>
+        <td style="width:75px;vertical-align:top;text-align:center;">
+          <img src="data:image/png;base64,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" style="width:68px;height:auto;" alt="Logo Ciamis">
+        </td>
+        <td style="text-align:center;vertical-align:middle;padding:0 8px;">
+          <div style="font-size:12pt;font-weight:bold;letter-spacing:0.5px;">PEMERINTAH KABUPATEN CIAMIS</div>
+          <div style="font-size:11pt;font-weight:bold;">KECAMATAN SADANANYA</div>
+          <div style="font-size:13pt;font-weight:bold;margin-top:2px;">KEPALA DESA GUNUNGSARI</div>
+          <div style="font-size:9pt;margin-top:3px;">Jl. Raya Gunungsari No.25 &nbsp; &#9742; (0265)774481 &nbsp; Kode Pos 46256</div>
+        </td>
+        <td style="width:70px;"></td>
+      </tr>
+    </table>
+    <div style="border-top:3px solid #000;border-bottom:1px solid #000;height:4px;margin:6px 0 14px 0;"></div>
+    <div class="judul">SURAT KETERANGAN ANDON NIKAH</div>
+    <div class="nomor">Nomor : ${formatNoregFromData(d)}</div>
+    <div style="margin:10px 0;">Yang bertanda tangan di bawah ini Kepala Desa Gunungsari Kecamatan Sadananya Kabupaten Ciamis Provinsi Jawa Barat, menerangkan bahwa</div>
+    <table class="form-t">
+      ${row('Nama', d.suami_nama)}
+      ${row('NIK', d.suami_nik)}
+      ${row('Tempat/Tgl.Lahir', d.suami_ttl)}
+      ${row('Agama', d.suami_agama||'ISLAM')}
+      ${row('Alamat', d.suami_alamat)}
+    </table>
+    <div style="margin:10px 0;">Benar orang tersebut penduduk Desa kami dan bermaksud melangsungkan pernikahan di wilayah Saudara dengan seorang perempuan :</div>
+    <table class="form-t">
+      ${row('Nama', d.istri_nama)}
+      ${row('NIK', d.istri_nik)}
+      ${row('Tempat/Tgl.Lahir', d.istri_ttl)}
+      ${row('Alamat', d.istri_alamat)}
+    </table>
+    <div style="margin-top:12px;">Demikian surat keterangan Andon Nikah ini agar dapat membantu kelancaran.</div>
+    <div class="ttd">
+      <div class="ttd-box" style="float:right;">
+        <div>${desa}, ${tglSurat}</div>
+        <div>Kepala Desa Gunungsari</div>
+        <div class="ttd-space"></div>
+        <div><strong>EMAN S</strong></div>
+      </div>
+      <div style="clear:both;"></div>
+    </div>`;
+  }
+
+  if (type === 'jejaka') {
+    return `
+    <div class="judul">SURAT PERNYATAAN JEJAKA / STATUS</div>
+    <div style="margin:12px 0;">Yang bertanda tangan di bawah ini saya :</div>
+    <table class="form-t">
+      ${row('Nama', d.suami_nama)}
+      ${row('NIK', d.suami_nik)}
+      ${row('Tempat/Tgl.Lahir', d.suami_ttl)}
+      ${row('Agama', d.suami_agama||'ISLAM')}
+      ${row('Alamat', d.suami_alamat)}
+      ${row('Status', d.suami_status)}
+    </table>
+    <div style="margin:14px 0;">Dengan ini menyatakan dengan sesungguhnya bahwa status perkawinan saya adalah sebagaimana tersebut di atas.</div>
+    <div>Surat pernyataan ini saya buat dengan sebenarnya dan tanpa tekanan atau paksaan dari pihak manapun. Apabila ternyata surat pernyataan ini tidak benar, saya bersedia dituntut sesuai hukum yang berlaku.</div>
+    <div class="ttd">
+      <div class="ttd-box" style="float:right;">
+        <div>${desa}, ${tglSurat}</div>
+        <div>Yang membuat pernyataan,</div>
+        <div class="ttd-space"></div>
+        <div>materai</div>
+        <div style="margin-top:8px;"><strong>${esc(d.suami_nama)}</strong></div>
+      </div>
+      <div style="clear:both;"></div>
+    </div>`;
+  }
+
+  return '<div>Form tidak ditemukan</div>';
+}
+
+
+
+function cetakRekap() {
+  if (!requireAuth()) return;
+  const arr = loadData();
+  if (!arr.length) { alert('Belum ada data.'); return; }
+  let rows = arr.map((d, i) => `
+    <tr>
+      <td style="text-align:center;border:1px solid #000;padding:4px;">${i+1}</td>
+      <td style="border:1px solid #000;padding:4px;">${esc(d.suami_nama)}</td>
+      <td style="border:1px solid #000;padding:4px;">${esc(d.suami_nik)}</td>
+      <td style="border:1px solid #000;padding:4px;">${esc(d.istri_nama)}</td>
+      <td style="border:1px solid #000;padding:4px;">${esc(d.hari_tgl)}</td>
+      <td style="border:1px solid #000;padding:4px;">${esc(formatNoregFromData(d))}</td>
+      <td style="border:1px solid #000;padding:4px;text-align:center;">${esc(d.status||'PROSES')}</td>
+    </tr>`).join('');
+
+  const htmlContent = `
+    <div style="font-family:'Times New Roman',Times,serif;font-size:10pt;color:#000;">
+      <div style="text-align:center;font-weight:bold;font-size:13pt;">REKAP DATA PENDAFTARAN NIKAH</div>
+      <div style="text-align:center;font-size:11pt;margin-bottom:12px;">Desa Gunungsari Kec. Sadananya Kab. Ciamis</div>
+      <table style="width:100%;border-collapse:collapse;font-size:9pt;">
+        <thead>
+          <tr style="background:#eee;">
+            <th style="border:1px solid #000;padding:5px;width:28px;">No</th>
+            <th style="border:1px solid #000;padding:5px;">Nama Suami</th>
+            <th style="border:1px solid #000;padding:5px;">NIK Suami</th>
+            <th style="border:1px solid #000;padding:5px;">Nama Istri</th>
+            <th style="border:1px solid #000;padding:5px;">Hari/Tgl Nikah</th>
+            <th style="border:1px solid #000;padding:5px;">No. Register</th>
+            <th style="border:1px solid #000;padding:5px;">Status</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <div style="margin-top:16px;font-size:9pt;">Total: ${arr.length} data &nbsp;|&nbsp; Dicetak: ${new Date().toLocaleDateString('id-ID')}</div>
+    </div>
+    <div class="print-actions no-print">
+      <button style="background:#276749;color:#fff;padding:10px 18px;border:none;border-radius:8px;font-weight:600;cursor:pointer;" onclick="window.print()">🖨️ Cetak (F4)</button>
+      <button style="background:#718096;color:#fff;padding:10px 18px;border:none;border-radius:8px;font-weight:600;cursor:pointer;" onclick="closePrint()">Tutup</button>
+    </div>`;
+
+  document.querySelectorAll('.print-area').forEach(p => { p.classList.remove('showing'); p.innerHTML=''; });
+  const area = document.getElementById('print-rekap');
+  area.innerHTML = htmlContent;
+  area.classList.add('showing');
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  setTimeout(() => window.print(), 300);
+}
+
+function exportExcel() {
+  if (!requireAuth()) return;
+  const arr = loadData();
+  if (!arr.length) { alert('Tidak ada data untuk diexport.'); return; }
+
+  const headers = [
+    'No','Nama Suami','Bin','NIK Suami','TTL Suami','Status Suami','Pekerjaan Suami','Alamat Suami',
+    'Nama Istri','Binti','NIK Istri','TTL Istri','Status Istri','Pekerjaan Istri','Alamat Istri',
+    'Hari/Tgl/Jam Nikah','Tempat Akad','Mas Kawin',
+    'No Register','No Register Lengkap','Tgl Input','Status Berkas','Keterangan',
+    'Nama Ayah Istri','NIK Ayah Istri','TTL Ayah Istri','Status Ayah',
+    'Nama Ibu Istri','NIK Ibu Istri',
+    'Nama Wali Pengganti','Hubungan Wali','NIK Wali',
+    'Nama Ayah Suami','NIK Ayah Suami','Nama Ibu Suami','NIK Ibu Suami',
+    'Saksi 1','Saksi 2'
+  ];
+  const nikCols = new Set([3, 10, 24, 28, 32, 33, 35]);
+
+  const headerRow = headers.map(h =>
+    '<th style="border:1px solid #000;padding:5px 6px;background:#1a365d;color:#fff;font-weight:bold;">' + h + '</th>'
+  ).join('');
+
+  let tableRows = '';
+  arr.forEach((d, i) => {
+    const cells = [
+      i + 1,
+      d.suami_nama || '', d.suami_bin || '', d.suami_nik || '', d.suami_ttl || '',
+      d.suami_status || '', d.suami_kerja || '', (d.suami_alamat || '').replace(/\n/g, ' '),
+      d.istri_nama || '', d.istri_binti || '', d.istri_nik || '', d.istri_ttl || '',
+      d.istri_status || '', d.istri_kerja || '', (d.istri_alamat || '').replace(/\n/g, ' '),
+      d.hari_tgl || '', d.tempat || '', d.maskawin || '',
+      d.noreg || '', formatNoregFromData(d), d.tgl_input || '', d.status || '', d.keterangan || '',
+      d.ayah_nama || '', d.ayah_nik || '', d.ayah_ttl || '', d.ayah_status || 'HIDUP',
+      d.ibu_nama || '', d.ibu_nik || '',
+      d.wali_nama || '', d.wali_hubungan || '', d.wali_nik || '',
+      d.ayah_suami || '', d.ayah_suami_nik || '', d.ibu_suami || '', d.ibu_suami_nik || '',
+      d.saksi1_nama || '', d.saksi2_nama || ''
+    ];
+    tableRows += '<tr>';
+    cells.forEach((c, ci) => {
+      const s = String(c == null ? '' : c)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      if (nikCols.has(ci) && s !== '') {
+        tableRows += '<td style="border:1px solid #000;padding:4px 6px;" x:str="' + s + '">' + s + '</td>';
+      } else {
+        tableRows += '<td style="border:1px solid #000;padding:4px 6px;">' + s + '</td>';
+      }
+    });
+    tableRows += '</tr>';
+  });
+
+  const excelHTML = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--[if gte mso 9]><xml>
+<x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>
+<x:Name>Rekap Nikah</x:Name>
+<x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions>
+</x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook>
+</xml><![endif]-->
+<style>
+table { border-collapse: collapse; font-family: Calibri, Arial, sans-serif; font-size: 11pt; }
+th { background: #1a365d; color: #fff; }
+td, th { border: 1px solid #000; }
+</style>
+</head>
+<body>
+<h3>REKAP DATA PENDAFTARAN NIKAH — Desa Gunungsari Kec. Sadananya Kab. Ciamis</h3>
+<p>Export: ${new Date().toLocaleDateString('id-ID')} | Total: ${arr.length} data</p>
+<table border="1">
+<thead><tr>${headerRow}</tr></thead>
+<tbody>${tableRows}</tbody>
+</table>
+</body></html>`;
+
+  const blob = new Blob([excelHTML], { type: 'application/vnd.ms-excel' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'Rekap_Pendaftaran_Nikah_' + new Date().toISOString().slice(0,10) + '.xls';
+  a.click();
+  toast('✅ Export Excel berhasil (' + arr.length + ' data)');
+}
+
+function exportData() {
+  if (!requireAuth()) return;
+  const arr = loadData();
+  if (!arr.length) { alert('Tidak ada data untuk diexport.'); return; }
+  const blob = new Blob([JSON.stringify(arr, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'rekap-pendaftaran-nikah-' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+  toast('Data berhasil diexport');
+}
+
+function importData(e) {
+  if (!requireAuth()) return;
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    try {
+      const data = JSON.parse(ev.target.result);
+      if (!Array.isArray(data)) throw new Error('Format tidak valid');
+      if (!confirm(`Import ${data.length} data? Data lama akan diganti.`)) return;
+      saveData(data);
+      toast('Import berhasil: ' + data.length + ' data');
+      renderRekap();
+    } catch (err) {
+      alert('Gagal import: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+}
+
+// Init — cek sesi login
+(function init() {
+  if (isAuthenticated()) {
+    showPage('dashboard');
+    updateCount();
+  } else {
+    showPage('login');
+  }
+  // Enter key untuk login
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      const loginPage = document.getElementById('page-login');
+      if (loginPage && loginPage.classList.contains('active')) {
+        doLogin();
+      }
+    }
+  });
+
+  // Daftarkan Service Worker (PWA / offline)
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('./sw.js').then(function(reg) {
+        console.log('SW registered', reg.scope);
+      }).catch(function(err) {
+        console.log('SW registration failed', err);
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

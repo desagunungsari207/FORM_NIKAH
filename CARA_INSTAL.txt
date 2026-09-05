@@ -1,0 +1,60 @@
+========================================
+  FORM PENDAFTARAN NIKAH - VERSI PWA
+  Desa Gunungsari Kec. Sadananya Kab. Ciamis
+========================================
+
+Login default:
+  Username : admin
+  Password : desa123
+
+----------------------------------------
+CARA INSTAL DI ANDROID
+----------------------------------------
+
+PWA hanya bisa diinstal jika dibuka lewat HTTPS
+(atau localhost). File biasa (file://) TIDAK bisa
+muncul tombol "Install".
+
+PILIHAN 1 — Hosting gratis (paling mudah)
+1. Upload SEMUA isi folder ini ke hosting, misalnya:
+   - GitHub Pages
+   - Netlify (drag & drop folder)
+   - Cloudflare Pages
+   - Vercel
+2. Buka alamat situsnya di Chrome Android.
+3. Ketuk menu (titik tiga) → "Install app"
+   atau "Tambahkan ke layar utama".
+4. Ikon aplikasi akan muncul di home screen.
+
+PILIHAN 2 — Uji di PC dulu (localhost)
+1. Di folder ini, jalankan server lokal, contoh:
+     python -m http.server 8080
+2. Buka http://localhost:8080 di Chrome.
+3. Di Chrome desktop: ikon Install di address bar.
+4. Di HP (satu jaringan WiFi): buka
+     http://IP-KOMPUTER:8080
+   lalu Install / Add to Home screen.
+
+PILIHAN 3 — Tanpa internet (setelah terpasang)
+Setelah diinstal sekali saat online, aplikasi
+bisa dibuka offline (data tersimpan di HP).
+
+----------------------------------------
+ISI FOLDER
+----------------------------------------
+  index.html      → aplikasi utama
+  manifest.json   → konfigurasi PWA
+  sw.js           → service worker (offline)
+  icons/          → ikon aplikasi
+  CARA_INSTAL.txt → file ini
+
+----------------------------------------
+CATATAN
+----------------------------------------
+- Data disimpan di browser HP (localStorage).
+- Hapus data browser / uninstall app = data hilang.
+  Gunakan Export Excel/JSON secara berkala.
+- Fitur cetak di HP biasanya jadi "Simpan PDF"
+  atau bagikan ke printer.
+- Password bisa diganti di dalam index.html
+  (cari LOGIN_USER dan LOGIN_PASS).
