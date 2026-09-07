@@ -394,7 +394,14 @@ body {
         <div class="form-group"><label>Bin</label><input type="text" id="f_suami_bin"></div>
         <div class="form-group"><label>NIK</label><input type="text" id="f_suami_nik" maxlength="16"></div>
       </div>
-      <div class="form-group"><label>Tempat, Tanggal Lahir</label><input type="text" id="f_suami_ttl" placeholder="CIAMIS, 11-11-1980"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Tempat Lahir</label><input type="text" id="f_suami_ttl_tempat" placeholder="CIAMIS" oninput="updateTtl('suami')"></div>
+        <div class="form-group"><label>Tanggal Lahir</label><input type="date" id="f_suami_ttl_tgl" onchange="updateTtl('suami')"></div>
+      </div>
+      <div class="form-group">
+        <label>TTL <small style="font-weight:400;color:#718096;">(otomatis)</small></label>
+        <input type="text" id="f_suami_ttl" readonly style="background:#f7fafc;font-weight:600;" placeholder="Tempat, DD-MM-YYYY">
+      </div>
       <div class="form-row">
         <div class="form-group"><label>Agama</label><input type="text" id="f_suami_agama" value="ISLAM"></div>
         <div class="form-group"><label>Pekerjaan</label><input type="text" id="f_suami_kerja"></div>
@@ -416,7 +423,14 @@ body {
         <div class="form-group"><label>Binti</label><input type="text" id="f_istri_binti"></div>
         <div class="form-group"><label>NIK</label><input type="text" id="f_istri_nik" maxlength="16"></div>
       </div>
-      <div class="form-group"><label>Tempat, Tanggal Lahir</label><input type="text" id="f_istri_ttl" placeholder="CIAMIS, 08-08-1982"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Tempat Lahir</label><input type="text" id="f_istri_ttl_tempat" placeholder="CIAMIS" oninput="updateTtl('istri')"></div>
+        <div class="form-group"><label>Tanggal Lahir</label><input type="date" id="f_istri_ttl_tgl" onchange="updateTtl('istri')"></div>
+      </div>
+      <div class="form-group">
+        <label>TTL <small style="font-weight:400;color:#718096;">(otomatis)</small></label>
+        <input type="text" id="f_istri_ttl" readonly style="background:#f7fafc;font-weight:600;" placeholder="Tempat, DD-MM-YYYY">
+      </div>
       <div class="form-row">
         <div class="form-group"><label>Agama</label><input type="text" id="f_istri_agama" value="ISLAM"></div>
         <div class="form-group"><label>Pekerjaan</label><input type="text" id="f_istri_kerja" placeholder="-"></div>
@@ -434,16 +448,26 @@ body {
     <div class="card">
       <div class="card-title">Orang Tua Istri (Wali)</div>
       <div class="form-group"><label>Nama Ayah</label><input type="text" id="f_ayah_nama"></div>
+      <div class="form-group"><label>NIK Ayah</label><input type="text" id="f_ayah_nik"></div>
       <div class="form-row">
-        <div class="form-group"><label>NIK Ayah</label><input type="text" id="f_ayah_nik"></div>
-        <div class="form-group"><label>TTL Ayah</label><input type="text" id="f_ayah_ttl"></div>
+        <div class="form-group"><label>Tempat Lahir Ayah</label><input type="text" id="f_ayah_ttl_tempat" placeholder="CIAMIS" oninput="updateTtl('ayah')"></div>
+        <div class="form-group"><label>Tanggal Lahir Ayah</label><input type="date" id="f_ayah_ttl_tgl" onchange="updateTtl('ayah')"></div>
+      </div>
+      <div class="form-group">
+        <label>TTL Ayah <small style="font-weight:400;color:#718096;">(otomatis)</small></label>
+        <input type="text" id="f_ayah_ttl" readonly style="background:#f7fafc;font-weight:600;" placeholder="Tempat, DD-MM-YYYY">
       </div>
       <div class="form-group"><label>Pekerjaan Ayah</label><input type="text" id="f_ayah_kerja"></div>
       <div class="form-group"><label>Alamat Ayah</label><input type="text" id="f_ayah_alamat"></div>
       <div class="form-group"><label>Nama Ibu</label><input type="text" id="f_ibu_nama"></div>
+      <div class="form-group"><label>NIK Ibu</label><input type="text" id="f_ibu_nik"></div>
       <div class="form-row">
-        <div class="form-group"><label>NIK Ibu</label><input type="text" id="f_ibu_nik"></div>
-        <div class="form-group"><label>TTL Ibu</label><input type="text" id="f_ibu_ttl"></div>
+        <div class="form-group"><label>Tempat Lahir Ibu</label><input type="text" id="f_ibu_ttl_tempat" placeholder="CIAMIS" oninput="updateTtl('ibu')"></div>
+        <div class="form-group"><label>Tanggal Lahir Ibu</label><input type="date" id="f_ibu_ttl_tgl" onchange="updateTtl('ibu')"></div>
+      </div>
+      <div class="form-group">
+        <label>TTL Ibu <small style="font-weight:400;color:#718096;">(otomatis)</small></label>
+        <input type="text" id="f_ibu_ttl" readonly style="background:#f7fafc;font-weight:600;" placeholder="Tempat, DD-MM-YYYY">
       </div>
       <div class="form-group">
         <label>Status Ayah (Wali)</label>
@@ -461,7 +485,14 @@ body {
         <div class="form-group"><label>Bin / Hubungan</label><input type="text" id="f_wali_bin" placeholder="Contoh: Paman / Kakak"></div>
         <div class="form-group"><label>NIK</label><input type="text" id="f_wali_nik"></div>
       </div>
-      <div class="form-group"><label>Tempat, Tanggal Lahir</label><input type="text" id="f_wali_ttl"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Tempat Lahir</label><input type="text" id="f_wali_ttl_tempat" placeholder="CIAMIS" oninput="updateTtl('wali')"></div>
+        <div class="form-group"><label>Tanggal Lahir</label><input type="date" id="f_wali_ttl_tgl" onchange="updateTtl('wali')"></div>
+      </div>
+      <div class="form-group">
+        <label>TTL <small style="font-weight:400;color:#718096;">(otomatis)</small></label>
+        <input type="text" id="f_wali_ttl" readonly style="background:#f7fafc;font-weight:600;" placeholder="Tempat, DD-MM-YYYY">
+      </div>
       <div class="form-row">
         <div class="form-group"><label>Agama</label><input type="text" id="f_wali_agama" value="ISLAM"></div>
         <div class="form-group"><label>Pekerjaan</label><input type="text" id="f_wali_kerja"></div>
@@ -485,20 +516,27 @@ body {
         <div class="form-group"><label>Saksi 1 - Nama</label><input type="text" id="f_saksi1_nama"></div>
         <div class="form-group"><label>Umur</label><input type="text" id="f_saksi1_umur" placeholder="54 TAHUN"></div>
       </div>
-      <div class="form-group"><label>Pekerjaan & Alamat Saksi 1</label><input type="text" id="f_saksi1_ket"></div>
+      <div class="form-group"><label>Pekerjaan Saksi 1</label><input type="text" id="f_saksi1_kerja" placeholder="Petani / Pedagang / dll"></div>
+      <div class="form-group"><label>Alamat Saksi 1</label><input type="text" id="f_saksi1_alamat" placeholder="Dusun / Desa"></div>
       <div class="form-row">
         <div class="form-group"><label>Saksi 2 - Nama</label><input type="text" id="f_saksi2_nama"></div>
         <div class="form-group"><label>Umur</label><input type="text" id="f_saksi2_umur" placeholder="48 TAHUN"></div>
       </div>
-      <div class="form-group"><label>Pekerjaan & Alamat Saksi 2</label><input type="text" id="f_saksi2_ket"></div>
+      <div class="form-group"><label>Pekerjaan Saksi 2</label><input type="text" id="f_saksi2_kerja" placeholder="Petani / Pedagang / dll"></div>
+      <div class="form-group"><label>Alamat Saksi 2</label><input type="text" id="f_saksi2_alamat" placeholder="Dusun / Desa"></div>
     </div>
 
     <div class="card">
       <div class="card-title">Orang Tua Calon Suami</div>
       <div class="form-group"><label>Nama Ayah</label><input type="text" id="f_ayah_suami"></div>
+      <div class="form-group"><label>NIK Ayah</label><input type="text" id="f_ayah_suami_nik"></div>
       <div class="form-row">
-        <div class="form-group"><label>NIK Ayah</label><input type="text" id="f_ayah_suami_nik"></div>
-        <div class="form-group"><label>TTL Ayah</label><input type="text" id="f_ayah_suami_ttl"></div>
+        <div class="form-group"><label>Tempat Lahir Ayah</label><input type="text" id="f_ayah_suami_ttl_tempat" placeholder="CIAMIS" oninput="updateTtl('ayah_suami')"></div>
+        <div class="form-group"><label>Tanggal Lahir Ayah</label><input type="date" id="f_ayah_suami_ttl_tgl" onchange="updateTtl('ayah_suami')"></div>
+      </div>
+      <div class="form-group">
+        <label>TTL Ayah <small style="font-weight:400;color:#718096;">(otomatis)</small></label>
+        <input type="text" id="f_ayah_suami_ttl" readonly style="background:#f7fafc;font-weight:600;" placeholder="Tempat, DD-MM-YYYY">
       </div>
       <div class="form-row">
         <div class="form-group"><label>Pekerjaan Ayah</label><input type="text" id="f_ayah_suami_kerja"></div>
@@ -506,9 +544,14 @@ body {
       </div>
       <div class="form-group"><label>Alamat Ayah</label><input type="text" id="f_ayah_suami_alamat"></div>
       <div class="form-group"><label>Nama Ibu</label><input type="text" id="f_ibu_suami"></div>
+      <div class="form-group"><label>NIK Ibu</label><input type="text" id="f_ibu_suami_nik"></div>
       <div class="form-row">
-        <div class="form-group"><label>NIK Ibu</label><input type="text" id="f_ibu_suami_nik"></div>
-        <div class="form-group"><label>TTL Ibu</label><input type="text" id="f_ibu_suami_ttl"></div>
+        <div class="form-group"><label>Tempat Lahir Ibu</label><input type="text" id="f_ibu_suami_ttl_tempat" placeholder="CIAMIS" oninput="updateTtl('ibu_suami')"></div>
+        <div class="form-group"><label>Tanggal Lahir Ibu</label><input type="date" id="f_ibu_suami_ttl_tgl" onchange="updateTtl('ibu_suami')"></div>
+      </div>
+      <div class="form-group">
+        <label>TTL Ibu <small style="font-weight:400;color:#718096;">(otomatis)</small></label>
+        <input type="text" id="f_ibu_suami_ttl" readonly style="background:#f7fafc;font-weight:600;" placeholder="Tempat, DD-MM-YYYY">
       </div>
       <div class="form-row">
         <div class="form-group"><label>Pekerjaan Ibu</label><input type="text" id="f_ibu_suami_kerja"></div>
@@ -668,6 +711,72 @@ function updateHariTgl() {
   }
 }
 
+function updateTtl(prefix) {
+  const tempatEl = document.getElementById('f_' + prefix + '_ttl_tempat');
+  const tglEl = document.getElementById('f_' + prefix + '_ttl_tgl');
+  const outEl = document.getElementById('f_' + prefix + '_ttl');
+  if (!outEl) return;
+  const tempat = (tempatEl ? tempatEl.value : '').trim().toUpperCase();
+  const tgl = tglEl ? tglEl.value : '';
+  if (!tgl) {
+    outEl.value = tempat || '';
+    return;
+  }
+  try {
+    const d = new Date(tgl + 'T12:00:00');
+    if (isNaN(d.getTime())) { outEl.value = tempat || ''; return; }
+    const dd = String(d.getDate()).padStart(2, '0');
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const yyyy = d.getFullYear();
+    const tglFmt = dd + '-' + mm + '-' + yyyy;
+    outEl.value = tempat ? (tempat + ', ' + tglFmt) : tglFmt;
+  } catch (e) {
+    outEl.value = tempat || '';
+  }
+}
+
+/** Parse string TTL lama → tempat + date input (mode edit) */
+function parseTtlToInputs(prefix, str) {
+  const tempatEl = document.getElementById('f_' + prefix + '_ttl_tempat');
+  const tglEl = document.getElementById('f_' + prefix + '_ttl_tgl');
+  const outEl = document.getElementById('f_' + prefix + '_ttl');
+  if (!tempatEl || !tglEl) {
+    if (outEl) outEl.value = str || '';
+    return;
+  }
+  if (!str) {
+    tempatEl.value = '';
+    tglEl.value = '';
+    if (outEl) outEl.value = '';
+    return;
+  }
+  // "CIAMIS, 11-11-1980" atau "CIAMIS, 11 SEPTEMBER 1980"
+  const comma = str.indexOf(',');
+  let tempat = '';
+  let tglPart = str.trim();
+  if (comma >= 0) {
+    tempat = str.slice(0, comma).trim();
+    tglPart = str.slice(comma + 1).trim();
+  }
+  tempatEl.value = tempat;
+
+  // DD-MM-YYYY atau D-M-YYYY
+  let m = tglPart.match(/^(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})$/);
+  if (m) {
+    tglEl.value = m[3] + '-' + String(m[2]).padStart(2, '0') + '-' + String(m[1]).padStart(2, '0');
+  } else {
+    // "11 SEPTEMBER 1980"
+    m = tglPart.match(/(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})/i);
+    if (m) {
+      const blnIdx = BULAN_INDO.indexOf(m[2].toUpperCase());
+      if (blnIdx >= 0) {
+        tglEl.value = m[3] + '-' + String(blnIdx + 1).padStart(2, '0') + '-' + String(m[1]).padStart(2, '0');
+      }
+    }
+  }
+  updateTtl(prefix);
+}
+
 /** Coba parse string hari_tgl lama ke date + time (untuk mode edit) */
 function parseHariTglToInputs(str) {
   const tglEl = document.getElementById('f_tgl_nikah');
@@ -804,10 +913,14 @@ function getFormValues() {
     wali_hubungan: val('f_wali_hubungan'),
     saksi1_nama: val('f_saksi1_nama'),
     saksi1_umur: val('f_saksi1_umur'),
-    saksi1_ket: val('f_saksi1_ket'),
+    saksi1_kerja: val('f_saksi1_kerja'),
+    saksi1_alamat: val('f_saksi1_alamat'),
+    saksi1_ket: [val('f_saksi1_kerja'), val('f_saksi1_alamat')].filter(Boolean).join(' / '),
     saksi2_nama: val('f_saksi2_nama'),
     saksi2_umur: val('f_saksi2_umur'),
-    saksi2_ket: val('f_saksi2_ket'),
+    saksi2_kerja: val('f_saksi2_kerja'),
+    saksi2_alamat: val('f_saksi2_alamat'),
+    saksi2_ket: [val('f_saksi2_kerja'), val('f_saksi2_alamat')].filter(Boolean).join(' / '),
     ayah_suami: val('f_ayah_suami'),
     ayah_suami_nik: val('f_ayah_suami_nik'),
     ayah_suami_ttl: val('f_ayah_suami_ttl'),
@@ -910,7 +1023,7 @@ function bukaDetail(id) {
   setIf('f_suami_nama', d.suami_nama);
   setIf('f_suami_bin', d.suami_bin);
   setIf('f_suami_nik', d.suami_nik);
-  setIf('f_suami_ttl', d.suami_ttl);
+  parseTtlToInputs('suami', d.suami_ttl);
   setIf('f_suami_agama', d.suami_agama);
   setIf('f_suami_kerja', d.suami_kerja);
   setIf('f_suami_alamat', d.suami_alamat);
@@ -918,24 +1031,24 @@ function bukaDetail(id) {
   setIf('f_istri_nama', d.istri_nama);
   setIf('f_istri_binti', d.istri_binti);
   setIf('f_istri_nik', d.istri_nik);
-  setIf('f_istri_ttl', d.istri_ttl);
+  parseTtlToInputs('istri', d.istri_ttl);
   setIf('f_istri_agama', d.istri_agama);
   setIf('f_istri_kerja', d.istri_kerja);
   setIf('f_istri_alamat', d.istri_alamat);
   setIf('f_istri_status', d.istri_status);
   setIf('f_ayah_nama', d.ayah_nama);
   setIf('f_ayah_nik', d.ayah_nik);
-  setIf('f_ayah_ttl', d.ayah_ttl);
+  parseTtlToInputs('ayah', d.ayah_ttl);
   setIf('f_ayah_kerja', d.ayah_kerja);
   setIf('f_ayah_alamat', d.ayah_alamat);
   setIf('f_ayah_status', d.ayah_status || 'HIDUP');
   setIf('f_ibu_nama', d.ibu_nama);
   setIf('f_ibu_nik', d.ibu_nik);
-  setIf('f_ibu_ttl', d.ibu_ttl);
+  parseTtlToInputs('ibu', d.ibu_ttl);
   setIf('f_wali_nama', d.wali_nama);
   setIf('f_wali_bin', d.wali_bin);
   setIf('f_wali_nik', d.wali_nik);
-  setIf('f_wali_ttl', d.wali_ttl);
+  parseTtlToInputs('wali', d.wali_ttl);
   setIf('f_wali_agama', d.wali_agama);
   setIf('f_wali_kerja', d.wali_kerja);
   setIf('f_wali_alamat', d.wali_alamat);
@@ -943,19 +1056,34 @@ function bukaDetail(id) {
   toggleWaliPengganti();
   setIf('f_saksi1_nama', d.saksi1_nama);
   setIf('f_saksi1_umur', d.saksi1_umur);
-  setIf('f_saksi1_ket', d.saksi1_ket);
+  if (d.saksi1_kerja || d.saksi1_alamat) {
+    setIf('f_saksi1_kerja', d.saksi1_kerja);
+    setIf('f_saksi1_alamat', d.saksi1_alamat);
+  } else if (d.saksi1_ket) {
+    // data lama: pekerjaan & alamat digabung
+    const parts = String(d.saksi1_ket).split(/\s*\/\s*/);
+    setIf('f_saksi1_kerja', parts[0] || d.saksi1_ket);
+    setIf('f_saksi1_alamat', parts.slice(1).join(' / ') || '');
+  }
   setIf('f_saksi2_nama', d.saksi2_nama);
   setIf('f_saksi2_umur', d.saksi2_umur);
-  setIf('f_saksi2_ket', d.saksi2_ket);
+  if (d.saksi2_kerja || d.saksi2_alamat) {
+    setIf('f_saksi2_kerja', d.saksi2_kerja);
+    setIf('f_saksi2_alamat', d.saksi2_alamat);
+  } else if (d.saksi2_ket) {
+    const parts2 = String(d.saksi2_ket).split(/\s*\/\s*/);
+    setIf('f_saksi2_kerja', parts2[0] || d.saksi2_ket);
+    setIf('f_saksi2_alamat', parts2.slice(1).join(' / ') || '');
+  }
   setIf('f_ayah_suami', d.ayah_suami);
   setIf('f_ayah_suami_nik', d.ayah_suami_nik);
-  setIf('f_ayah_suami_ttl', d.ayah_suami_ttl);
+  parseTtlToInputs('ayah_suami', d.ayah_suami_ttl);
   setIf('f_ayah_suami_kerja', d.ayah_suami_kerja);
   setIf('f_ayah_suami_agama', d.ayah_suami_agama);
   setIf('f_ayah_suami_alamat', d.ayah_suami_alamat);
   setIf('f_ibu_suami', d.ibu_suami);
   setIf('f_ibu_suami_nik', d.ibu_suami_nik);
-  setIf('f_ibu_suami_ttl', d.ibu_suami_ttl);
+  parseTtlToInputs('ibu_suami', d.ibu_suami_ttl);
   setIf('f_ibu_suami_kerja', d.ibu_suami_kerja);
   setIf('f_ibu_suami_agama', d.ibu_suami_agama);
   setIf('f_ibu_suami_alamat', d.ibu_suami_alamat);
