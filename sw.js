@@ -1,5 +1,5 @@
 /* Service Worker - Form Pendaftaran Nikah Gunungsari */
-const CACHE_NAME = 'nikah-gunungsari-v2';
+const CACHE_NAME = 'nikah-gunungsari-v3';
 const ASSETS = [
   './',
   './index.html',
